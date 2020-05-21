@@ -138,31 +138,43 @@ public abstract class MvvmFragment<V extends ViewDataBinding, VM extends IMvvmBa
         super.onDetach();
         if (viewModel != null && viewModel.isUIAttached())
             viewModel.detachUI();
-        Log.d(getFragmentTag(), this + ": " + "onDetach");
+        Log.e(getFragmentTag(), this + ": " + "onDetach");
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        Log.d(getFragmentTag(), this + ": " + "onStop");
+        Log.e(getFragmentTag(), this + ": " + "onStop");
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        Log.d(getFragmentTag(), this + ": " + "onPause");
+        Log.e(getFragmentTag(), this + ": " + "onPause");
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.d(getFragmentTag(), this + ": " + "onResume");
+        Log.e(getFragmentTag(), this + ": " + "onResume UserVisibleHint:" + getUserVisibleHint() + "  hiddenChanged:" + isHidden());
     }
 
     @Override
     public void onDestroy() {
-        Log.d(getFragmentTag(), this + ": " + "onDestroy");
+        Log.e(getFragmentTag(), this + ": " + "onDestroy");
         super.onDestroy();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        Log.e(getFragmentTag(), this + ": " + "onHiddenChanged:" + hidden + " UserVisibleHint:" + getUserVisibleHint());
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        Log.e(getFragmentTag(), this + ": " + "setUserVisibleHint:" + isVisibleToUser);
     }
 
     public void setLoadSir(View view) {

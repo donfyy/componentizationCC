@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+
+import com.arch.demo.core.fragment.MainTabFragment;
 import com.arch.demo.core.fragment.MvvmFragment;
 import com.google.android.material.tabs.TabLayout;
 import com.xiangxue.news.R;
@@ -11,7 +13,7 @@ import com.xiangxue.news.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
 
-public class HeadlineNewsFragment extends MvvmFragment<FragmentHomeBinding, HeadlineNewsViewModel> implements HeadlineNewsViewModel.IMainView{
+public class HeadlineNewsFragment extends MainTabFragment<FragmentHomeBinding, HeadlineNewsViewModel> implements HeadlineNewsViewModel.IMainView{
     HeadlineNewsFragmentAdapter mAdapter;
 
     @Override
@@ -44,7 +46,7 @@ public class HeadlineNewsFragment extends MvvmFragment<FragmentHomeBinding, Head
 
     @Override
     protected String getFragmentTag() {
-        return "HeadlineNewsFragment";
+        return "HeadlineNewsFragment:TabFragment";
     }
 
     public void initChannels() {
@@ -79,5 +81,15 @@ public class HeadlineNewsFragment extends MvvmFragment<FragmentHomeBinding, Head
             viewDataBinding.tablayout.addTab(viewDataBinding.tablayout.newTab().setText(channel.channelName));
         }
         viewDataBinding.tablayout.scrollTo(0,0);
+    }
+
+    @Override
+    public void onVisible() {
+
+    }
+
+    @Override
+    public void onInvisible() {
+
     }
 }

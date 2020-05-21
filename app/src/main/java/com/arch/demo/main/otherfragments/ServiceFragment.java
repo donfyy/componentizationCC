@@ -1,29 +1,59 @@
 package com.arch.demo.main.otherfragments;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
-import androidx.annotation.Nullable;
-import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
 
 import com.arch.demo.R;
+import com.arch.demo.core.fragment.MainTabFragment;
+import com.arch.demo.core.fragment.MvvmFragment;
 import com.arch.demo.databinding.FragmentOthersBinding;
 
 /**
  * Created by Vishal Patolia on 18-Feb-18.
  */
 
-public class ServiceFragment extends Fragment {
-    FragmentOthersBinding mBinding;
+public class ServiceFragment extends MainTabFragment<FragmentOthersBinding, ServiceViewModel> {
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_others, container, false);
-        mBinding.homeTxtTitle.setText(getString(R.string.menu_services));
-        return mBinding.getRoot();
+    public int getBindingVariable() {
+        return 0;
+    }
+
+    @Override
+    public int getLayoutId() {
+        return R.layout.fragment_others;
+    }
+
+    @Override
+    public ServiceViewModel getViewModel() {
+        return new ServiceViewModel();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        viewDataBinding.homeTxtTitle.setText(getString(R.string.menu_services));
+    }
+
+    @Override
+    protected void onRetryBtnClick() {
+
+    }
+
+    @Override
+    protected String getFragmentTag() {
+        return "ServiceFragment:TabFragment";
+    }
+
+    @Override
+    public void onVisible() {
+
+    }
+
+    @Override
+    public void onInvisible() {
+
     }
 }
