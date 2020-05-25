@@ -13,6 +13,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Lifecycle;
 
 import com.arch.demo.R;
 import com.arch.demo.core.activity.MvvmActivity;
@@ -125,6 +126,7 @@ public class MainActivity extends MvvmActivity<ActivityMainBinding, MvvmBaseView
             if (!to.isAdded()) {
                 if (from != null) {
                     transaction.hide(from);
+                    transaction.setMaxLifecycle(from, Lifecycle.State.CREATED);
                 }
                 if (to != null) {
                     transaction.add(R.id.container, to).commit();
@@ -133,8 +135,10 @@ public class MainActivity extends MvvmActivity<ActivityMainBinding, MvvmBaseView
             } else {
                 if (from != null) {
                     transaction.hide(from);
+                    transaction.setMaxLifecycle(from, Lifecycle.State.CREATED);
                 }
                 if (to != null) {
+                    transaction.setMaxLifecycle(to, Lifecycle.State.RESUMED);
                     transaction.show(to).commit();
                 }
 

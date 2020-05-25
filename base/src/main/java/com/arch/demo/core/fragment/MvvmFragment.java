@@ -49,6 +49,7 @@ public abstract class MvvmFragment<V extends ViewDataBinding, VM extends IMvvmBa
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         viewDataBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
+        Log.e(getFragmentTag(), this + ": " + "onCreateView");
         return viewDataBinding.getRoot();
     }
 
@@ -63,6 +64,7 @@ public abstract class MvvmFragment<V extends ViewDataBinding, VM extends IMvvmBa
             viewDataBinding.setVariable(getBindingVariable(), viewModel);
             viewDataBinding.executePendingBindings();
         }
+        Log.e(getFragmentTag(), this + ": " + "onViewCreated");
     }
     /***
      *   初始化参数
@@ -73,6 +75,7 @@ public abstract class MvvmFragment<V extends ViewDataBinding, VM extends IMvvmBa
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        Log.e(getFragmentTag(), this + ": " + "onDestroyView");
     }
 
     @Override
@@ -139,6 +142,12 @@ public abstract class MvvmFragment<V extends ViewDataBinding, VM extends IMvvmBa
         if (viewModel != null && viewModel.isUIAttached())
             viewModel.detachUI();
         Log.e(getFragmentTag(), this + ": " + "onDetach");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.e(getFragmentTag(), this + ": " + "onStart");
     }
 
     @Override
